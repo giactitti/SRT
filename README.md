@@ -50,36 +50,36 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 
 # Example of application
 
-[link to example](https://code.earthengine.google.com/354d6080cc7a68079b248afe24471f69)
+[link to example](https://code.earthengine.google.com/65c87d5af1eed8c3cee7a0a66d4746a5)
 
 
 ```javascript
 //generate table
 var geom=ee.Geometry.BBox(94.1329327392578,25.514028970276666,94.5339337158203,25.890203351903423);
-var MapUnit=geom.coveringGrid(geom.projection(),10000);
+var MapUnit=geom.coveringGrid(geom.projection(),1000);
 Map.addLayer(MapUnit,{},'units');
 
 //import tool
 var SRT = require('users/giacomotitti/SRT:SRTfunctions');
 
 //temperature
-var temperature = SRT.SRTtemperature(MapUnit,2000,2021);//mapping unit, start date, end date
+var temperature = SRT.SRTtemperature(MapUnit,2000,2021,30);//mapping unit, start date, end date, scale
 print(temperature,'temperature');
 
 //geomorphometry
-var geomorphometry = SRT.SRTgeomorphometry(MapUnit,1000);//mapping unit, buffer radius for relief
+var geomorphometry = SRT.SRTgeomorphometry(MapUnit,1000,30);//mapping unit, buffer radius for relief, scale
 print(geomorphometry,'geomorphometry');
 
-//curvature
-var curvature = SRT.SRTcurvature(MapUnit);//mapping unit
+//geomorph
+var curvature = SRT.SRTcurvature(MapUnit,30);//mapping unit, scale
 print(curvature,'curvature');
 
 // precipitation
-var precipitation = SRT.SRTprecipitation(MapUnit,1991,2020);//mapping unit, start date, end date
+var precipitation = SRT.SRTprecipitation(MapUnit,1991,2020,30);//mapping unit, start date, end date, scale
 print(precipitation,'precipitation');
 
 //ndvi
-var ndvi = SRT.SRTndvi(MapUnit,2011,2020);//mapping unit, start date, end date
+var ndvi = SRT.SRTndvi(MapUnit,2011,2020,30);//mapping unit, start date, end date, scale
 print(ndvi,'ndvi');
 
 //Display
@@ -88,13 +88,12 @@ var display = function(collection,name){
 var imaged = collection.reduceToImage({
 properties: [name],
 reducer: ee.Reducer.first()});
-Map.addLayer(imaged, {
-  min: -1,
-  max: 1,
-  palette: ['FCFDBF', 'FDAE78', 'EE605E', 'B63679', '711F81', '2C105C']
-},name)};
+Map.addLayer(imaged,{},name)};
 
 display(ndvi,'NDVI_mean');
+display(geomorphometry,'Slope_mean');
+display(precipitation,'RnMax_mean');
+display(temperature,'TMax_mean');
 ```
 
 # Contacts
