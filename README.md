@@ -1,7 +1,7 @@
 # SRT
 
 
-[link to example](https://code.earthengine.google.com/f9827358657956aae56fa54cc93ff623)
+[link to example](https://code.earthengine.google.com/8a8e3a15badb223b564e3efd071ca008
 
 
 
