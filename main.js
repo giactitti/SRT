@@ -35,11 +35,6 @@ reducer: ee.Reducer.first()});
 Map.addLayer(imaged,{},name)};
 
 display(ndvi,'NDVI_mean');
-//display(geomorphometry,'Slope');
+display(geomorphometry,'Slope_mean');
 display(precipitation,'RnMax_mean');
 display(temperature,'TMax_mean');
-  max: 1,
-  palette: ['FCFDBF', 'FDAE78', 'EE605E', 'B63679', '711F81', '2C105C']
-},name)};
-
-display(ndvi,'NDVI_mean');
