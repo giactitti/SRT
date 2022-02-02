@@ -50,7 +50,7 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 
 # Example of application
 
-[link to example](https://code.earthengine.google.com/65c87d5af1eed8c3cee7a0a66d4746a5)
+[link to example](https://code.earthengine.google.com/06017f29059864e8f249460ab1766252)
 
 
 ```javascript
