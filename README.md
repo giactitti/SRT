@@ -97,4 +97,6 @@ Map.addLayer(imaged, {
 display(ndvi,'NDVI_mean');
 ```
 
+# Contacts
+
 For any request, comment and suggestion, please write to me: giacomotitti@gmail.com
