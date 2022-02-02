@@ -45,6 +45,7 @@ The outputs are 5 feature collections which contains several columns:
 
 
 Most of the variables derived from the DEM have been calculated using [TAGEE](https://github.com/zecojls/tagee) function:
+
 Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Rizzo, R.; Demattê, J.A.M. Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis. ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
 
 # Example of application
@@ -95,3 +96,5 @@ Map.addLayer(imaged, {
 
 display(ndvi,'NDVI_mean');
 ```
+
+For any request, comment and suggestion, please write to me: giacomotitti@gmail.com
