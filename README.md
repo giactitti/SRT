@@ -9,7 +9,7 @@ The dataset collected are:
 
 The SRT is structured in 5 separated functions which can be run separately or simultanously:
 - SRTtemperature()
-- SRTgeomorphology()
+- SRTgeomorphometry()
 - SRTcurvature()
 - SRTprecipitation()
 - SRTndvi()
@@ -20,7 +20,7 @@ The outputs are 5 feature collections which contains several columns:
 
 | Function            | Column name | Description                                                                |
 |---------------------|-------------|----------------------------------------------------------------------------|
-| SRTgeomorphology    | Elev        | Elevation                                                                  |
+| SRTgeomorphometry   | Elev        | Elevation                                                                  |
 |                     | Slope       | Slope                                                                      |
 |                     | Asp         | Aspect                                                                     |
 |                     | Hill        | Hillshade                                                                  |
@@ -50,7 +50,7 @@ Safanelli, J.L.; Poppiel, R.R.; Ruiz, L.F.C.; Bonfatti, B.R.; Mello, F.A.O.; Riz
 
 # Example of application
 
-[link to example](https://code.earthengine.google.com/8a8e3a15badb223b564e3efd071ca008)
+[link to example](https://code.earthengine.google.com/354d6080cc7a68079b248afe24471f69)
 
 
 ```javascript
@@ -66,11 +66,11 @@ var SRT = require('users/giacomotitti/SRT:SRTfunctions');
 var temperature = SRT.SRTtemperature(MapUnit,2000,2021);//mapping unit, start date, end date
 print(temperature,'temperature');
 
-//geomorph
-var geomorphology = SRT.SRTgeomorphology(MapUnit,1000);//mapping unit, buffer radius for relief
-print(geomorphology,'geomorphology');
+//geomorphometry
+var geomorphometry = SRT.SRTgeomorphometry(MapUnit,1000);//mapping unit, buffer radius for relief
+print(geomorphometry,'geomorphometry');
 
-//geomorph
+//curvature
 var curvature = SRT.SRTcurvature(MapUnit);//mapping unit
 print(curvature,'curvature');
 
