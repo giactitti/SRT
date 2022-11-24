@@ -1,5 +1,5 @@
 # SRT - Spatial Reduction Tool
-SRT is a collector and spatial reducer of data from GEE available dataset. It allows you to calculate the spatial mean and standard deviation from several dataset inside each feature of a feature collection ('MapUnit' in the example).
+SRT is a collector and spatial reducer of data from GEE available dataset. It allows you to calculate the spatial mean and standard deviation from several dataset inside each feature of a feature collection ('MapUnit' in the example). To open the code click [here](https://code.earthengine.google.com/0dcb4c9d69bc6f2bec54c11a85e6933b).
 
 The dataset collected are:
 - DEM: USGS/SRTMGL1_003
