@@ -62,38 +62,75 @@ Map.addLayer(MapUnit,{},'units');
 //import tool
 var SRT = require('users/giacomotitti/SRT:SRTfunctions');
 
-//temperature
+//FUNCTIONS
+//--------------------------------------------------------------------------------------------
+
+// temperature: MODIS, https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A1
+// values: Average daily mean temperature of one year averaged over a number of years, Std daily mean temperature of one year averaged over a number of years
+// Max daily mean temperature of one year averaged over a number of years
 var temperature = SRT.SRTtemperature(MapUnit,2000,2021,30);//mapping unit, start date, end date, scale
-print(temperature,'temperature');
 
-//geomorphometry
+// geomorphometry: SRTM, https://cmr.earthdata.nasa.gov/search/concepts/C1000000240-LPDAAC_ECS.html
+// values: Slope, Aspect, Hillshade, Northness, Eastness, Shape Index, Relative relief
 var geomorphometry = SRT.SRTgeomorphometry(MapUnit,1000,30);//mapping unit, buffer radius for relief, scale
-print(geomorphometry,'geomorphometry');
 
-//geomorph
+// curvature: SRTM, https://cmr.earthdata.nasa.gov/search/concepts/C1000000240-LPDAAC_ECS.html
+// values: Horizontal curvature, Vertical curvature, Mean curvature, Minimal curvature,	Maximal curvature, Gaussian curvature
 var curvature = SRT.SRTcurvature(MapUnit,30);//mapping unit, scale
-print(curvature,'curvature');
 
-// precipitation
+// precipitation: CHIRPS daily, https://chc.ucsb.edu/data/chirps
+// values: Annual precipitation averaged over a number of years,	Max daily precipitation of one year averaged over a number of years,
+// Std daily precipitation of one year averaged over a number of years, Average daily precipitation of one year averaged over a number of years
 var precipitation = SRT.SRTprecipitation(MapUnit,1991,2020,30);//mapping unit, start date, end date, scale
-print(precipitation,'precipitation');
 
-//ndvi
+// NDVI: Landsat, https://developers.google.cn/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_32DAY_NDVI
+// values: 32days NDVI averaged over a number of years
 var ndvi = SRT.SRTndvi(MapUnit,2011,2020,30);//mapping unit, start date, end date, scale
-print(ndvi,'ndvi');
 
-//Display
-Map.setCenter(94.33, 25.74, 10);
-var display = function(collection,name){
-var imaged = collection.reduceToImage({
-properties: [name],
-reducer: ee.Reducer.first()});
-Map.addLayer(imaged,{},name)};
 
-display(ndvi,'NDVI_mean');
-display(geomorphometry,'Slope_mean');
-display(precipitation,'RnMax_mean');
-display(temperature,'TMax_mean');
+//DOWNLOAD TO GOOGLE DRIVE
+//-------------------------------------------------------------------------------------------------------------------------------
+
+// uncomment to export NDVI: Landsat, https://developers.google.cn/earth-engine/datasets/catalog/LANDSAT_LC08_C01_T1_32DAY_NDVI
+Export.table.toDrive({
+  collection: ndvi,//add the name of the table to export
+  description: 'table',
+  folder: 'SRTout',
+  fileFormat: 'SHP',
+});
+
+// uncomment to export temperature: MODIS, https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD11A1
+//Export.table.toDrive({
+//  collection: temperature,//add the name of the table to export
+//  description: 'table',
+//  folder: 'SRTout',
+//  fileFormat: 'SHP',
+//});
+
+// uncomment to export geomorphometry: SRTM, https://cmr.earthdata.nasa.gov/search/concepts/C1000000240-LPDAAC_ECS.html
+//Export.table.toDrive({
+//  collection: geomorphometry,//add the name of the table to export
+//  description: 'table',
+//  folder: 'SRTout',
+//  fileFormat: 'SHP',
+//});
+
+// uncomment to export curvature: SRTM, https://cmr.earthdata.nasa.gov/search/concepts/C1000000240-LPDAAC_ECS.html
+//Export.table.toDrive({
+//  collection: curvature,//add the name of the table to export
+//  description: 'table',
+//  folder: 'SRTout',
+//  fileFormat: 'SHP',
+//});
+
+// uncomment to export precipitation: CHIRPS daily, https://chc.ucsb.edu/data/chirps
+//Export.table.toDrive({
+//  collection: precipitation,//add the name of the table to export
+//  description: 'table',
+//  folder: 'SRTout',
+//  fileFormat: 'SHP',
+//});
+
 ```
 
 # Contacts
