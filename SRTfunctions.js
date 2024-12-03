@@ -276,7 +276,7 @@ exports.SRTndvi = function (table, start, end, scale) {
 
   // Create image collection of S-2 imagery for the perdiod 2016-2018
   var S2 = ee
-    .ImageCollection("COPERNICUS/S2")
+    .ImageCollection("COPERNICUS/S2_HARMONIZED")
     //filter start and end date
     .filterDate("2015-06-23", "2020-12-31")
     //filter according to drawn boundary
@@ -287,22 +287,23 @@ exports.SRTndvi = function (table, start, end, scale) {
   var addNDVI = function (image) {
     var QA60 = image.select(["QA60"]);
     var masked = image.updateMask(QA60.lt(1));
-    return image.addBands(masked.normalizedDifference(["B8", "B4"]));
+    var ndvi = masked.normalizedDifference(["B8", "B4"]).rename("NDVI");
+    return ndvi;
+    // return image.addBands(masked.normalizedDifference(["B8", "B4"]));
   };
   // Add NDVI band to image collection
-  var S2 = S2.map(addNDVI);
+  var NDVI = S2.map(addNDVI);
   // Extract NDVI band and create NDVI median composite image
-  var NDVIs = S2.select(["nd"]);
-  var NDVImed = NDVIs.reduce(ee.Reducer.median());
+  NDVI = NDVI.reduce(ee.Reducer.median());
 
   ////////////////////////////////////////////////////////////NDVI Landsat 7
-  var a = start;
-  var b = end;
-  var datasetndvi = ee
-    .ImageCollection("LANDSAT/LE07/C01/T1_32DAY_NDVI")
-    .filterDate(a.toString(), b.toString())
-    .filterBounds(id);
-  var NDVI = datasetndvi.reduce(ee.Reducer.median());
+  // var a = start;
+  // var b = end;
+  // var datasetndvi = ee
+  //   .ImageCollection("LANDSAT/LE07/C01/T1_32DAY_NDVI")
+  //   .filterDate(a.toString(), b.toString())
+  //   .filterBounds(id);
+  // var NDVI = datasetndvi.reduce(ee.Reducer.median());
   //var scale=NDVI.select('NDVI_median').projection().nominalScale();
   //Map.addLayer(NDVI,{},'ndvi')
 
