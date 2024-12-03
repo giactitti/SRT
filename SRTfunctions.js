@@ -97,7 +97,7 @@ exports.SRTcurvature = function (table, scale) {
   //Terrain Analysis in Google Earth Engine: A Method Adapted for High-Performance Global-Scale Analysis.
   //ISPRS Int. J. Geo-Inf. 2020, 9, 400. DOI: https://doi.org/10.3390/ijgi9060400
   //GitHub: https://github.com/zecojls/tagee
-  var TAGEE = require("users/joselucassafanelli/TAGEE:TAGEE-functions");
+  var TAGEE = require("users/zecojls/TAGEE:TAGEE-functions");
 
   //var id=table2.filter(ee.Filter.eq("id",numero)).geometry();
   var id = table.geometry().bounds(); //null,table.geometry().projection());
