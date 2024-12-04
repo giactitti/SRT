@@ -99,3 +99,7 @@ display(temperature,'TMax_mean');
 # Contacts
 
 For any request, comment and suggestion, please write to me: giacomotitti@gmail.com
+
+Please, cite the following paper when using SRT:
+
+Titti, G., Napoli, G. N., Conoscenti, C., & Lombardo, L. (2022). Cloud-based interactive susceptibility modeling of gully erosion in Google Earth Engine. International Journal of Applied Earth Observation and Geoinformation, 115, 103089.
